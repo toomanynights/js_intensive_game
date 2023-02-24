@@ -1,26 +1,26 @@
 // alert("You are about to visit Boss's page.")
 
-// const charTitleInput = prompt("Input one characteristic of Boss:")
-// const charValueInput = prompt("Input the value of that characteristic:")
+const charTitleInput = prompt("Input one characteristic of Boss:")
+const charValueInput = prompt("Input the value of that characteristic:")
 
-// const charTitle = document.getElementById("charTitle")
-// const charValue = document.getElementById("charValue")
+const charTitle = document.getElementById("charTitle")
+const charValue = document.getElementById("charValue")
 
-// charTitle.innerText = charTitleInput
-// charValue.innerText = charValueInput
+charTitle.innerText = charTitleInput
+charValue.innerText = charValueInput
 
 
 
-// const isColor = (strColor) => {
-//     const s = new Option().style;
-//     s.color = strColor;
-//     return s.color !== '';
-//   }
+const isColor = (strColor) => {
+    const s = new Option().style;
+    s.color = strColor;
+    return s.color !== '';
+  }
 
-// if (isColor(charValueInput)) {
-//     charValue.style.color = charValueInput
-//     charValue.style.textShadow = "1px 1px 2px #000"
-// }
+if (isColor(charValueInput)) {
+    charValue.style.color = charValueInput
+    charValue.style.textShadow = "1px 1px 2px #000"
+}
 
 
 
@@ -123,3 +123,37 @@ answer.addEventListener("keydown", (e) => {
         answer.blur()
     }
 })
+
+const postBlock = document.querySelector(".blog .container")
+const blogBtn = document.querySelector(".blog button")
+
+
+
+function getPosts() {
+    fetch("https://jsonplaceholder.typicode.com/posts")
+    .then( res => res.json() )
+    .then( data => {
+        for (el of data) {
+            addPost(el.title, el.body)
+        }
+    })
+    .catch( err => console.log(err.message))
+}
+
+function addPost(title, body) {
+    const postTitle = document.createElement("h3")
+    const postBody = document.createElement("span")
+    const postItem = document.createElement("p")
+
+    postTitle.innerText = title
+    postBody.innerText = body
+
+    postItem.append(postTitle, postBody)
+    postBlock.append(postItem)
+
+}
+
+blogBtn.onclick = () => {
+    getPosts();
+    blogBtn.hidden = true;
+}
