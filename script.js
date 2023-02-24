@@ -1,7 +1,7 @@
 // alert("You are about to visit Boss's page.")
 
-const charTitleInput = prompt("Input one characteristic of Boss:")
-const charValueInput = prompt("Input the value of that characteristic:")
+const charTitleInput = prompt("Input one characteristic of Boss:", "Fur")
+const charValueInput = prompt("Input the value of that characteristic:", "Grey")
 
 const charTitle = document.getElementById("charTitle")
 const charValue = document.getElementById("charValue")
